@@ -2,9 +2,20 @@ package com.qwickr.muon;
 
 import io.dropwizard.Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.*;
-import javax.validation.constraints.*;
+
+import com.qwickr.dropwizard.muon.SingleTransportMuonFactory;
 
 public class DemoConfiguration extends Configuration {
-    // TODO: implement service configuration
+    
+    private MultiTransportMuonFactory muon = new MultiTransportMuonFactory();
+
+    @JsonProperty("muon")
+    public void setSingleTransportMuonFactory(MultiTransportMuonFactory factory) {
+        this.muon = factory;
+    }
+
+    @JsonProperty("muon")
+    public MultiTransportMuonFactory getMultiTransportMuonFactory() {
+        return muon;
+    }
 }

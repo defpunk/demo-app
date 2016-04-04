@@ -1,0 +1,4 @@
+muon:
+  connectionUrl: ${MUON_AMPQ_CONECTION_URL}
+  serviceName: demoApp
+  tags: [test, client, users]

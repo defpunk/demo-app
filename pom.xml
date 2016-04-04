@@ -43,6 +43,18 @@
         </dependency>
 
         <dependency>
+            <groupId>dropwizard-muon</groupId>
+            <artifactId>dropwizard-muon</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+            <exclusions>
+        <exclusion>  <!-- declare the exclusion here -->
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+      </exclusions> 
+        </dependency>
+
+        <dependency>
     <groupId>io.dropwizard</groupId>
     <artifactId>dropwizard-auth</artifactId>
     <version>0.8.4</version>
