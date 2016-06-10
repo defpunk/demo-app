@@ -11,6 +11,9 @@ import io.dropwizard.auth.*;
 import io.dropwizard.auth.basic.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import io.dropwizard.configuration.*;
+
+import io.muoncore.MultiTransportMuon;
 
 import com.qwickr.dropwizard.muon.MuonFactory;
 
@@ -29,14 +32,18 @@ public class DemoApplication extends Application<DemoConfiguration> {
 
     @Override
     public void initialize(final Bootstrap<DemoConfiguration> bootstrap) {
-        // TODO: application initialization
+        bootstrap.setConfigurationSourceProvider(
+                new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
+                                                   new EnvironmentVariableSubstitutor()
+                )
+        );
     }
 
     @Override
     public void run(final DemoConfiguration configuration,
                     final Environment environment) {
         
-        java.util.Map muon = MuonFactory.build(configuration.getSingleTransportMuonFactory());
+        muon_clojure.server.Microservice muon = MuonFactory.build(configuration.getMultiTransportMuonFactory());
 
         environment.jersey().register(AuthFactory.binder(new BasicAuthFactory<>(
             AuthenticatorFactory.build(muon), "AUTHENTICATION", AuthenticatedUser.class)));

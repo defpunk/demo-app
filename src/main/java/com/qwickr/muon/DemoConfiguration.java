@@ -3,7 +3,7 @@ package com.qwickr.muon;
 import io.dropwizard.Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.qwickr.dropwizard.muon.SingleTransportMuonFactory;
+import com.qwickr.dropwizard.muon.MultiTransportMuonFactory;
 
 public class DemoConfiguration extends Configuration {
     
